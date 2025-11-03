@@ -1,0 +1,48 @@
+sudo wireshark 
+
+ Click on eth0
+
+ ip.addr == 18.161.216.37
+ tcp.port == 443 
+
+sudo service apache2 start 
+sudo mkdir -p /var/www/html/testlogin 
+cd /var/www/html/testlogin 
+
+
+lohin.html
+<html>
+<head> 
+    <title>Test Login Page</title> 
+</head> 
+<body> 
+    <h2>Login Form</h2> 
+    <form action="login.php" method="post"> 
+        Username: <input type="text" name="username"><br><br> 
+        Password: <input type="password" name="password"><br><br> 
+        <input type="submit" value="Login"> 
+    </form> 
+</body> 
+</html> 
+
+login.php
+<?php
+$username = $_POST['username']; 
+$password = $_POST['password']; 
+ 
+echo "<h2>Login Attempt</h2>"; 
+echo "Username: " . $username . "<br>"; 
+echo "Password: " . $password . "<br>"; 
+?> 
+
+sudo service apache2 status 
+sudo service apache2 start 
+http://127.0.0.1/testlogin/login.html 
+Or: Type in bash 
+curl http://127.0.0.1/testlogin/login.html 
+Open Wireshark → select lo (loopback) interface. 
+http.request.method == "POST" 
+: admin 
+● Password: test123 
+Locate POST packet. 
+● Right-click → Follow →HTTP stream
