@@ -1,0 +1,6 @@
+diff file1.txt file2.txt 
+cmp -l file1.txt file2.txt 
+vimdiff file1.txt file2.txt 
+diff -u file1.txt file2.txt > diff_report.txt 
+
+vm->shared folder->new->copy folder path->automaount->make permenant->ok
